@@ -14,8 +14,9 @@ const i18n = t(lang);
 
   <!-- ═══ HERO ═══ -->
   <section class="hero" aria-label="Hero">
+
+    <!-- Video / Görsel arka plan -->
     <div class="hero-bg" aria-hidden="true">
-      <!-- Video arka plan — public/videos/hero.mp4 varsa oynar -->
       <video
         class="hero-video"
         autoplay
@@ -26,149 +27,153 @@ const i18n = t(lang);
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
-      <div class="hero-video-overlay"></div>
-      <div class="hero-texture"></div>
-      <div class="hero-vignette"></div>
+      <div class="hero-overlay"></div>
     </div>
 
-    <div class="hero-inner">
-      <div class="hero-meta">
-        <span class="hero-edition">{i18n.hero.edition}</span>
+    <!-- İçerik -->
+    <div class="hero-body">
+      <div class="hero-kicker">
+        <span class="hero-kicker-line"></span>
+        <span class="hero-kicker-text">{i18n.hero.edition}</span>
+        <span class="hero-kicker-line"></span>
       </div>
 
       <h1 class="hero-title">
-        <span class="hero-title-line">Dünya</span>
-        <span class="hero-title-line hero-title-line--accent">Havacılık ve Uzay</span>
-        <span class="hero-title-line">Kongresi</span>
+        Dünya<br/>
+        <em>Havacılık ve Uzay</em><br/>
+        Kongresi
       </h1>
 
-      <div class="hero-dateline">
-        <span class="hero-date">{i18n.hero.date}</span>
-        <span class="hero-sep" aria-hidden="true">·</span>
-        <span class="hero-location">{i18n.hero.location}</span>
+      <div class="hero-meta-row">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Şehir</span>
+          <span class="hero-meta-value">{i18n.hero.location}</span>
+        </div>
+        <div class="hero-meta-divider" aria-hidden="true"></div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Tarih</span>
+          <span class="hero-meta-value">{i18n.hero.date}</span>
+        </div>
+        <div class="hero-meta-divider" aria-hidden="true"></div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Düzenleyen</span>
+          <span class="hero-meta-value">TBTK</span>
+        </div>
       </div>
-
-      <p class="hero-tagline">{i18n.hero.tagline}</p>
 
       <div class="hero-actions">
         <a href="/delegation" class="btn-primary">{i18n.hero.cta_delegation}</a>
-        <a href="/about" class="btn-outline">{i18n.hero.cta_about}</a>
-      </div>
-
-      <div class="hero-org">
-        <span class="hero-org-label">{i18n.hero.organized_by}</span>
-        <span class="hero-org-sep" aria-hidden="true">—</span>
-        <span class="hero-org-name">Türk Bilim Tarihi Kurumu Derneği</span>
+        <a href="/about" class="btn-ghost">{i18n.hero.cta_about}</a>
       </div>
     </div>
 
-    <!-- Countdown -->
-    <div class="countdown-strip">
+    <!-- Geri sayım -->
+    <div class="hero-countdown" id="countdown-strip">
       <div class="countdown-inner">
-        <p class="countdown-label">{i18n.countdown.until}</p>
-        <div class="countdown-units" id="countdown">
-          <div class="countdown-unit">
+        <span class="countdown-label">{i18n.countdown.until}</span>
+        <div class="countdown-units">
+          <div class="cd-unit">
             <span class="cd-num" id="cd-days">—</span>
-            <span class="cd-label">{i18n.countdown.days}</span>
+            <span class="cd-lbl">{i18n.countdown.days}</span>
           </div>
-          <div class="countdown-unit">
+          <span class="cd-sep" aria-hidden="true">:</span>
+          <div class="cd-unit">
             <span class="cd-num" id="cd-hours">—</span>
-            <span class="cd-label">{i18n.countdown.hours}</span>
+            <span class="cd-lbl">{i18n.countdown.hours}</span>
           </div>
-          <div class="countdown-unit">
+          <span class="cd-sep" aria-hidden="true">:</span>
+          <div class="cd-unit">
             <span class="cd-num" id="cd-minutes">—</span>
-            <span class="cd-label">{i18n.countdown.minutes}</span>
+            <span class="cd-lbl">{i18n.countdown.minutes}</span>
           </div>
-          <div class="countdown-unit">
+          <span class="cd-sep" aria-hidden="true">:</span>
+          <div class="cd-unit">
             <span class="cd-num" id="cd-seconds">—</span>
-            <span class="cd-label">{i18n.countdown.seconds}</span>
+            <span class="cd-lbl">{i18n.countdown.seconds}</span>
           </div>
         </div>
       </div>
     </div>
+
   </section>
 
-  <!-- ═══ ABOUT ═══ -->
+  <!-- ═══ HAKKINDA ═══ -->
   <section class="section-about">
     <div class="container">
       <div class="about-grid">
-        <div class="about-text">
+        <div class="about-left">
           <span class="eyebrow">{i18n.about.label}</span>
-          <span class="brass-rule" style="margin: 1.25rem 0 1.75rem;"></span>
-          <h2 class="about-title">{i18n.about.title}</h2>
-          <p class="about-body">{i18n.about.body}</p>
+          <div class="section-rule"></div>
+          <h2 class="section-title">{i18n.about.title}</h2>
+          <p class="body-text">{i18n.about.body}</p>
         </div>
-
-        <div class="about-facts">
-          <div class="fact">
-            <p class="fact-label">{i18n.about.triennial_label}</p>
-            <p class="fact-desc">{i18n.about.triennial_desc}</p>
-          </div>
-          <div class="fact">
-            <p class="fact-label">{i18n.about.organizer_label}</p>
-            <p class="fact-desc">{i18n.about.organizer_desc}</p>
-          </div>
-          <div class="fact">
-            <p class="fact-label">{i18n.about.declaration_label}</p>
-            <p class="fact-desc">{i18n.about.declaration_desc}</p>
-          </div>
-          <div class="fact fact--future">
-            <p class="fact-label">WAC 2033</p>
-            <p class="fact-desc">THY'nin 100. yıldönümü münasebetiyle İstanbul hedeflenmektedir</p>
+        <div class="about-right">
+          <div class="fact-list">
+            <div class="fact">
+              <p class="fact-label">{i18n.about.triennial_label}</p>
+              <p class="fact-desc">{i18n.about.triennial_desc}</p>
+            </div>
+            <div class="fact">
+              <p class="fact-label">{i18n.about.organizer_label}</p>
+              <p class="fact-desc">{i18n.about.organizer_desc}</p>
+            </div>
+            <div class="fact">
+              <p class="fact-label">{i18n.about.declaration_label}</p>
+              <p class="fact-desc">{i18n.about.declaration_desc}</p>
+            </div>
+            <div class="fact fact--highlight">
+              <p class="fact-label">WAC 2033</p>
+              <p class="fact-desc">THY'nin 100. yıldönümü münasebetiyle İstanbul hedeflenmektedir</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ SYMPOSIA ═══ -->
+  <!-- ═══ SEMPOZYUMLAR ═══ -->
   <section class="section-symposia">
     <div class="container">
       <div class="symposia-header">
-        <span class="eyebrow">{i18n.symposia.label}</span>
-        <span class="brass-rule" style="margin: 1.25rem 0 1.75rem;"></span>
-        <h2 class="symposia-title">{i18n.symposia.title}</h2>
+        <span class="eyebrow eyebrow--light">{i18n.symposia.label}</span>
+        <div class="section-rule section-rule--light"></div>
+        <h2 class="section-title section-title--light">{i18n.symposia.title}</h2>
       </div>
-
       <div class="symposia-list">
         {i18n.symposia.items.map((item: {num: string; title: string}) => (
-          <div class="symposium-row">
+          <a href={`/symposia#s${item.num}`} class="symposium-row">
             <span class="sym-num">{item.num}</span>
             <span class="sym-title">{item.title}</span>
-            <a href={`/symposia#s${item.num}`} class="sym-link" aria-label={`${item.title} hakkında`}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
+            <svg class="sym-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         ))}
       </div>
-
-      <div class="forum-box">
-        <p class="forum-label">Küresel Havacılık ve Uzay Forumu</p>
-        <p class="forum-desc">Endüstri temsilcileri, CEO'lar, sektör öncüleri, politika yapıcılar ve akademisyenlerle; yapay zekâ, sürdürülebilirlik, uzay ekonomisi ve İHA teknolojileri üzerine güncel forumlar.</p>
+      <div class="forum-card">
+        <div class="forum-card-label">Küresel Havacılık ve Uzay Forumu</div>
+        <p class="forum-card-text">Endüstri temsilcileri, CEO'lar, sektör öncüleri, politika yapıcılar ve akademisyenlerle; yapay zekâ, sürdürülebilirlik, uzay ekonomisi ve İHA teknolojileri üzerine güncel forumlar.</p>
       </div>
     </div>
   </section>
 
-  <!-- ═══ DELEGATION ═══ -->
+  <!-- ═══ DELEGASYON ═══ -->
   <section class="section-delegation">
     <div class="container">
       <div class="delegation-grid">
-        <div class="delegation-text">
-          <span class="eyebrow" style="color: var(--brass-pale);">{i18n.delegation.label}</span>
-          <span class="brass-rule" style="margin: 1.25rem 0 1.75rem; background: var(--brass-light);"></span>
-          <h2 class="delegation-title">{i18n.delegation.title}</h2>
-          <p class="delegation-body">{i18n.delegation.body}</p>
-          <a href="/delegation" class="btn-primary" style="margin-top: 2rem;">{i18n.delegation.cta}</a>
+        <div class="delegation-left">
+          <span class="eyebrow eyebrow--gold">{i18n.delegation.label}</span>
+          <div class="section-rule section-rule--gold"></div>
+          <h2 class="section-title section-title--light">{i18n.delegation.title}</h2>
+          <p class="body-text body-text--dim">{i18n.delegation.body}</p>
+          <a href="/delegation" class="btn-primary" style="margin-top: 2.25rem; display: inline-flex;">{i18n.delegation.cta}</a>
         </div>
-
-        <div class="delegation-who">
+        <div class="delegation-right">
           <p class="who-label">{i18n.delegation.who_can}</p>
           <ul class="who-list">
             {i18n.delegation.who_list.map((item: string) => (
               <li class="who-item">
-                <span class="who-mark" aria-hidden="true">—</span>
+                <span class="who-dash" aria-hidden="true">—</span>
                 {item}
               </li>
             ))}
@@ -181,525 +186,565 @@ const i18n = t(lang);
 </Layout>
 
 <style>
-  /* ══ HERO ══ */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: var(--night);
-    overflow: hidden;
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--night);
+  overflow: hidden;
+}
+
+/* Video arka plan */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.hero-video.loaded {
+  opacity: 1;
+}
+
+/* Çok katmanlı overlay — aşağısı daha koyu, yazılar okunuyor */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(8,17,31,0.72) 0%,
+      rgba(8,17,31,0.45) 45%,
+      rgba(8,17,31,0.65) 70%,
+      rgba(8,17,31,0.97) 100%
+    );
+}
+
+/* İçerik alanı */
+.hero-body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 12rem 3rem 5rem;
+}
+
+/* Kicker — "Birinci · 2027 · İstanbul" */
+.hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-kicker-line {
+  flex: 0 0 32px;
+  height: 1px;
+  background: var(--brass);
+  opacity: 0.6;
+}
+
+.hero-kicker-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9375rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass-pale);
+  letter-spacing: 0.01em;
+}
+
+/* Ana başlık */
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(4.5rem, 9.5vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin: 0 0 3rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--brass-pale);
+  font-weight: 400;
+}
+
+/* Meta satırı — Şehir / Tarih / Düzenleyen */
+.hero-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hero-meta-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+  opacity: 0.8;
+}
+
+.hero-meta-value {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.01em;
+}
+
+.hero-meta-divider {
+  width: 1px;
+  height: 2rem;
+  background: rgba(255,255,255,0.12);
+  flex-shrink: 0;
+}
+
+/* Butonlar */
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.75rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+  cursor: pointer;
+  background: transparent;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255,255,255,0.45);
+  color: #fff;
+}
+
+/* Geri sayım şeridi */
+.hero-countdown {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(160,120,72,0.18);
+  background: rgba(5,12,22,0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.countdown-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.125rem 3rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.countdown-label {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.28);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.countdown-units {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.cd-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.9);
+  line-height: 1;
+  min-width: 2.25ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.cd-lbl {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+}
+
+.cd-sep {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: rgba(160,120,72,0.35);
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════
+   ORTAK
+═══════════════════════════════════════ */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.eyebrow {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  color: var(--brass);
+  display: block;
+}
+
+.eyebrow--light { color: var(--brass-light); }
+.eyebrow--gold  { color: var(--brass-pale); }
+
+.section-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--brass);
+  margin: 1rem 0 1.75rem;
+}
+
+.section-rule--light { background: rgba(160,120,72,0.5); }
+.section-rule--gold  { background: var(--brass-pale); opacity: 0.6; }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 2.875rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.15;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.section-title--light { color: #fff; }
+
+.body-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-width: 50ch;
+}
+
+.body-text--dim { color: rgba(255,255,255,0.45); }
+
+/* ═══════════════════════════════════════
+   HAKKINDA
+═══════════════════════════════════════ */
+.section-about {
+  padding: 7rem 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7rem;
+  align-items: start;
+}
+
+.fact-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.fact {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.fact:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.fact--highlight .fact-label {
+  color: var(--brass);
+}
+
+.fact-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  opacity: 0.6;
+  margin-bottom: 0.375rem;
+}
+
+.fact-desc {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ═══════════════════════════════════════
+   SEMPOZYUMLAR
+═══════════════════════════════════════ */
+.section-symposia {
+  padding: 7rem 0;
+  background: var(--night-mid);
+}
+
+.symposia-header {
+  margin-bottom: 3rem;
+}
+
+.symposia-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 4rem;
+}
+
+.symposium-row {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.125rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.symposium-row:hover {
+  background: rgba(160,120,72,0.06);
+  margin: 0 -1.5rem;
+  padding: 1.125rem 1.5rem;
+}
+
+.sym-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: var(--brass);
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sym-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.sym-arrow {
+  color: rgba(255,255,255,0.15);
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.symposium-row:hover .sym-arrow {
+  opacity: 1;
+  color: var(--brass-light);
+}
+
+/* Forum kartı */
+.forum-card {
+  padding: 2.25rem 2.75rem;
+  border-left: 2px solid var(--brass);
+  background: rgba(8,17,31,0.5);
+  max-width: 700px;
+}
+
+.forum-card-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--brass-pale);
+  margin-bottom: 0.875rem;
+  line-height: 1.3;
+}
+
+.forum-card-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.42);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════
+   DELEGASYON
+═══════════════════════════════════════ */
+.section-delegation {
+  padding: 7rem 0;
+  background: var(--night);
+  border-top: 1px solid rgba(160,120,72,0.1);
+}
+
+.delegation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7rem;
+  align-items: start;
+}
+
+.who-label {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--brass-light);
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.who-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.who-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.58);
+  line-height: 1.5;
+}
+
+.who-dash {
+  color: var(--brass);
+  opacity: 0.6;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 960px) {
+  .hero-body {
+    padding: 10rem 2rem 4rem;
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+  .about-grid, .delegation-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
   }
 
-  /* Video arka plan */
-  .hero-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0;
-    transition: opacity 1.2s ease;
-  }
-
-  .hero-video.loaded {
-    opacity: 1;
-  }
-
-  /* Video üstüne koyu overlay — okunabilirlik için */
-  .hero-video-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(to bottom,
-        rgba(8,17,31,0.55) 0%,
-        rgba(8,17,31,0.4) 40%,
-        rgba(8,17,31,0.7) 75%,
-        rgba(8,17,31,0.95) 100%
-      );
-    z-index: 1;
-  }
-
-  /* İnce, zarif doku — büyük geometrik grid yok */
-  .hero-texture {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background-image:
-      linear-gradient(rgba(160,120,72,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(160,120,72,0.04) 1px, transparent 1px);
-    background-size: 120px 120px;
-  }
-
-  .hero-vignette {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background:
-      radial-gradient(ellipse 70% 50% at 30% 20%, rgba(160,120,72,0.07) 0%, transparent 65%),
-      linear-gradient(to bottom, transparent 55%, var(--night) 100%);
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 3;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 11rem 2rem 6rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .hero-meta {
-    margin-bottom: 2.5rem;
-  }
-
-  /* "Birinci Dünya..." — italic serif, Türkçe karaktere dokunulmaz */
-  .hero-edition {
-    font-family: 'EB Garamond', serif;
-    font-size: 1rem;
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 0.01em;
-    color: var(--brass-pale);
-  }
-
-  .hero-title {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(4rem, 9vw, 8.5rem);
-    line-height: 0.92;
-    letter-spacing: -0.025em;
-    color: #fff;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-title-line--accent {
-    color: var(--brass-pale);
-    font-weight: 400;
-    font-style: italic;
-  }
-
-  .hero-dateline {
-    display: flex;
-    align-items: center;
-    gap: 0.875rem;
-    margin-bottom: 1.75rem;
-  }
-
-  .hero-date, .hero-location {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: 0.02em;
-  }
-
-  .hero-sep {
-    color: var(--brass);
-    opacity: 0.6;
-    font-size: 0.75rem;
-  }
-
-  .hero-tagline {
-    font-family: 'EB Garamond', serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.5);
-    max-width: 46ch;
-    margin-bottom: 2.75rem;
-    white-space: pre-line;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 3.5rem;
-  }
-
-  .hero-org {
-    display: flex;
-    align-items: center;
-    gap: 0.875rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .hero-org-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 300;
-    letter-spacing: 0.02em;
-    color: rgba(255,255,255,0.28);
-  }
-
-  .hero-org-sep {
-    color: rgba(160,120,72,0.4);
-    font-size: 0.75rem;
-  }
-
-  .hero-org-name {
-    font-family: 'EB Garamond', serif;
-    font-size: 0.9375rem;
-    font-style: italic;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
-  }
-
-  /* ── Countdown ── */
-  .countdown-strip {
-    position: relative;
-    z-index: 3;
-    border-top: 1px solid rgba(160,120,72,0.15);
-    background: rgba(8,17,31,0.85);
-    backdrop-filter: blur(12px);
-  }
-
-  .countdown-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 1.25rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-  }
-
-  .countdown-label {
-    font-family: 'EB Garamond', serif;
-    font-size: 0.875rem;
-    font-style: italic;
-    font-weight: 400;
-    color: rgba(255,255,255,0.3);
-    white-space: nowrap;
-    margin: 0;
-  }
-
-  .countdown-units {
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  .countdown-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.2rem;
-  }
-
-  .cd-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.875rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.9);
-    line-height: 1;
-    min-width: 2.5ch;
-    text-align: center;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .cd-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.5625rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--brass);
-  }
-
-  /* ══ SECTIONS ══ */
   .container {
-    max-width: 1280px;
-    margin: 0 auto;
     padding: 0 2rem;
   }
 
-  /* About */
-  .section-about {
-    padding: 7rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: start;
-  }
-
-  .about-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3vw, 2.75rem);
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .about-body {
-    font-family: 'EB Garamond', serif;
-    font-size: 1.125rem;
-    font-weight: 400;
-    line-height: 1.8;
-    color: var(--text-muted);
-    max-width: 52ch;
-  }
-
-  .about-facts {
-    display: flex;
+  .countdown-inner {
     flex-direction: column;
+    gap: 0.875rem;
+    align-items: flex-start;
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: clamp(3.25rem, 13vw, 4.5rem);
   }
 
-  .fact {
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--rule);
+  .hero-body {
+    padding: 8rem 1.25rem 3.5rem;
   }
 
-  .fact:first-child {
-    border-top: 1px solid var(--rule);
+  .hero-meta-row {
+    gap: 1.5rem;
   }
 
-  .fact--future .fact-label {
-    color: var(--brass);
+  .hero-meta-divider {
+    display: none;
   }
 
-  /* fact-label: küçük ama okunabilir, uppercase YOK */
-  .fact-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    margin-bottom: 0.375rem;
-    opacity: 0.7;
+  .countdown-units {
+    gap: 0.875rem;
   }
 
-  .fact-desc {
-    font-family: 'EB Garamond', serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.55;
-    color: var(--text);
-  }
-
-  /* Symposia */
-  .section-symposia {
-    padding: 7rem 0;
-    background: var(--night-mid);
-  }
-
-  .symposia-header {
-    margin-bottom: 3.5rem;
-  }
-
-  .symposia-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3vw, 2.75rem);
-    font-weight: 400;
-    color: #fff;
-    line-height: 1.2;
-  }
-
-  .symposia-list {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    margin-bottom: 4rem;
+  .cd-sep {
+    display: none;
   }
 
   .symposium-row {
-    display: grid;
-    grid-template-columns: 3.5rem 1fr auto;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: background 0.15s;
+    grid-template-columns: 2.5rem 1fr;
   }
 
-  .symposium-row:hover {
-    background: rgba(160,120,72,0.05);
-    margin: 0 -1.5rem;
-    padding: 1.25rem 1.5rem;
+  .sym-arrow {
+    display: none;
   }
 
-  .sym-num {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 300;
-    color: var(--brass);
-    letter-spacing: 0.04em;
-    font-variant-numeric: tabular-nums;
+  .container {
+    padding: 0 1.25rem;
   }
 
-  .sym-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4375rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.88);
-    letter-spacing: -0.01em;
-    line-height: 1.3;
+  .section-about, .section-symposia, .section-delegation {
+    padding: 4.5rem 0;
   }
-
-  .sym-link {
-    color: rgba(255,255,255,0.2);
-    opacity: 0;
-    transition: opacity 0.2s, color 0.2s;
-    text-decoration: none;
-  }
-
-  .symposium-row:hover .sym-link {
-    opacity: 1;
-    color: var(--brass-light);
-  }
-
-  /* Forum kutusu */
-  .forum-box {
-    padding: 2.25rem 2.5rem;
-    border: 1px solid rgba(160,120,72,0.2);
-    max-width: 680px;
-    background: rgba(8,17,31,0.6);
-  }
-
-  .forum-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3125rem;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--brass-pale);
-    margin-bottom: 0.875rem;
-    line-height: 1.3;
-  }
-
-  .forum-desc {
-    font-family: 'EB Garamond', serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.45);
-  }
-
-  /* Delegation */
-  .section-delegation {
-    padding: 7rem 0;
-    background: var(--night);
-    border-top: 1px solid rgba(160,120,72,0.12);
-  }
-
-  .delegation-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: start;
-  }
-
-  .delegation-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3vw, 2.75rem);
-    font-weight: 400;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .delegation-body {
-    font-family: 'EB Garamond', serif;
-    font-size: 1.125rem;
-    font-weight: 400;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.48);
-    max-width: 52ch;
-  }
-
-  /* who-label — uppercase YOK */
-  .who-label {
-    font-family: 'EB Garamond', serif;
-    font-size: 0.9375rem;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--brass-light);
-    margin-bottom: 1.25rem;
-    display: block;
-  }
-
-  .who-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .who-item {
-    display: flex;
-    align-items: baseline;
-    gap: 0.875rem;
-    padding: 0.875rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    font-family: 'EB Garamond', serif;
-    font-size: 1.0625rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.62);
-    line-height: 1.45;
-  }
-
-  .who-mark {
-    color: var(--brass);
-    font-size: 0.875rem;
-    flex-shrink: 0;
-    opacity: 0.7;
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 960px) {
-    .about-grid, .delegation-grid {
-      grid-template-columns: 1fr;
-      gap: 3.5rem;
-    }
-
-    .countdown-inner {
-      flex-direction: column;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .hero-title {
-      font-size: clamp(3rem, 13vw, 4rem);
-    }
-
-    .hero-inner {
-      padding: 9rem 1.25rem 5rem;
-    }
-
-    .countdown-units {
-      gap: 1.5rem;
-    }
-
-    .symposium-row {
-      grid-template-columns: 2.75rem 1fr;
-    }
-
-    .sym-link {
-      display: none;
-    }
-
-    .container {
-      padding: 0 1.25rem;
-    }
-  }
+}
 </style>
 
 <script>
@@ -711,8 +756,7 @@ const i18n = t(lang);
       showVideo();
     } else {
       video.addEventListener('canplaythrough', showVideo, { once: true });
-      // Fallback — 2 saniye sonra video yüklenmese bile göster
-      setTimeout(showVideo, 2000);
+      setTimeout(showVideo, 2500);
     }
   }
 
@@ -726,10 +770,10 @@ const i18n = t(lang);
     const diff = target.getTime() - now.getTime();
     if (diff <= 0) return;
 
-    const days = Math.floor(diff / 86400000);
+    const days  = Math.floor(diff / 86400000);
     const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const secs = Math.floor((diff % 60000) / 1000);
+    const mins  = Math.floor((diff % 3600000) / 60000);
+    const secs  = Math.floor((diff % 60000) / 1000);
 
     const el = (id: string) => document.getElementById(id);
     const d = el('cd-days'), h = el('cd-hours'), m = el('cd-minutes'), s = el('cd-seconds');
