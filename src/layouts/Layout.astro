@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl, t } from '../i18n';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: 'tr' | 'en';
+}
+
+const {
+  title = 'WAC 2027 — First World Aerospace Congress',
+  description = 'The First World Aerospace Congress. Istanbul, October 2027.',
+  lang: propLang,
+} = Astro.props;
+
+const lang = propLang || getLangFromUrl(Astro.url);
+const i18n = t(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Preconnect Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <Nav lang={lang} i18n={i18n.nav} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} i18n={i18n.footer} />
+  </body>
+</html>
