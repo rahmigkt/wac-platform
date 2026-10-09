@@ -1,0 +1,23 @@
+name: FTP Teşhis
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: FTP dizinlerini listele
+        env:
+          S: ${{ secrets.FTP_SERVER }}
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          out=""
+          for d in "" "public_html/" "worldaerospacecongress.org/" "public_html/worldaerospacecongress.org/" "httpdocs/" "www/"; do
+            res=$(curl -s --max-time 20 --user "$U:$P" "ftp://$S/$d" --list-only 2>&1 | head -40 | tr '\n' ' ')
+            out="${out}[/${d}] => ${res}%0A"
+          done
+          pwd_line=$(curl -s --max-time 20 --user "$U:$P" "ftp://$S/" -Q "PWD" --list-only -v 2>&1 | grep -i '257' | head -1)
+          out="${out}PWD: ${pwd_line}"
+          echo "::notice title=FTP listesi::${out}"
