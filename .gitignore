@@ -18,3 +18,8 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Video dosyaları — FTP ile ayrıca yüklenir, repoya koyma
+public/videos/*.mp4
+public/videos/*.webm
+public/videos/*.mov

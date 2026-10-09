@@ -15,6 +15,18 @@ const i18n = t(lang);
   <!-- ═══ HERO ═══ -->
   <section class="hero" aria-label="Hero">
     <div class="hero-bg" aria-hidden="true">
+      <!-- Video arka plan — public/videos/hero.mp4 varsa oynar -->
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="/images/istanbul-hero.jpg"
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-video-overlay"></div>
       <div class="hero-texture"></div>
       <div class="hero-vignette"></div>
     </div>
@@ -185,10 +197,41 @@ const i18n = t(lang);
     pointer-events: none;
   }
 
+  /* Video arka plan */
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  .hero-video.loaded {
+    opacity: 1;
+  }
+
+  /* Video üstüne koyu overlay — okunabilirlik için */
+  .hero-video-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom,
+        rgba(8,17,31,0.55) 0%,
+        rgba(8,17,31,0.4) 40%,
+        rgba(8,17,31,0.7) 75%,
+        rgba(8,17,31,0.95) 100%
+      );
+    z-index: 1;
+  }
+
   /* İnce, zarif doku — büyük geometrik grid yok */
   .hero-texture {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background-image:
       linear-gradient(rgba(160,120,72,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(160,120,72,0.04) 1px, transparent 1px);
@@ -198,6 +241,7 @@ const i18n = t(lang);
   .hero-vignette {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background:
       radial-gradient(ellipse 70% 50% at 30% 20%, rgba(160,120,72,0.07) 0%, transparent 65%),
       linear-gradient(to bottom, transparent 55%, var(--night) 100%);
@@ -205,7 +249,7 @@ const i18n = t(lang);
 
   .hero-inner {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     max-width: 1280px;
     margin: 0 auto;
     padding: 11rem 2rem 6rem;
@@ -318,7 +362,7 @@ const i18n = t(lang);
   /* ── Countdown ── */
   .countdown-strip {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     border-top: 1px solid rgba(160,120,72,0.15);
     background: rgba(8,17,31,0.85);
     backdrop-filter: blur(12px);
@@ -659,6 +703,19 @@ const i18n = t(lang);
 </style>
 
 <script>
+  // ── Video fade-in ──
+  const video = document.querySelector('.hero-video') as HTMLVideoElement | null;
+  if (video) {
+    const showVideo = () => video.classList.add('loaded');
+    if (video.readyState >= 3) {
+      showVideo();
+    } else {
+      video.addEventListener('canplaythrough', showVideo, { once: true });
+      // Fallback — 2 saniye sonra video yüklenmese bile göster
+      setTimeout(showVideo, 2000);
+    }
+  }
+
   // ── Countdown ──
   const target = new Date('2027-10-01T09:00:00+03:00');
 
