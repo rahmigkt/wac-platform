@@ -152,6 +152,9 @@ const altLabel = lang === 'en' ? 'TR' : 'EN';
     transition: all 0.2s;
   }
 
+  .mobile-menu[hidden] { display: none !important; }
+  @media (min-width: 901px) { .mobile-menu { display: none !important; } }
+
   .mobile-menu {
     background: var(--night);
     padding: 1rem 1.5rem 1.5rem;
