@@ -10,12 +10,12 @@ from zoneinfo import ZoneInfo
 from indico.web.flask.app import make_app
 
 TZ = ZoneInfo('Europe/Istanbul')
-TITLE = 'First World Aerospace Congress — WAC 2027'
+TITLE = 'World Aerospace Congress — WAC 2027'
 START = datetime(2027, 10, 4, 9, 0, tzinfo=TZ)
 END = datetime(2027, 10, 8, 18, 0, tzinfo=TZ)
 CFA_END = datetime(2027, 3, 31, 23, 59, tzinfo=TZ)
 DESCRIPTION = (
-    '<p>The First World Aerospace Congress (WAC 2027) will be held in Istanbul, Türkiye, in October 2027, '
+    '<p>The World Aerospace Congress (WAC 2027) will be held in Istanbul, Türkiye, in October 2027, '
     'organised by the Turkish Society for History of Science (TBTK).</p>'
     '<p>Abstracts are invited for the five symposium axes of the congress.</p>'
     '<p>More information: <a href="https://worldaerospacecongress.org">worldaerospacecongress.org</a></p>'
@@ -49,10 +49,11 @@ with app.app_context():
             raise SystemExit('Yönetici kullanıcı bulunamadı')
         session.set_session_user(admin)
 
-        event = Event.query.filter_by(title=TITLE, is_deleted=False).first()
+        event = Event.query.filter(Event.title.ilike('%WAC 2027%'), ~Event.is_deleted).first()
         if event is None:
             event = create_event(Category.get_root(), EventType.conference, {
                 'title': TITLE,
+                'creator': admin,
                 'description': DESCRIPTION,
                 'start_dt': START,
                 'end_dt': END,
