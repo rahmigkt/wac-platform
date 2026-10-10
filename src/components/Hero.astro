@@ -30,7 +30,6 @@ const submitUrl = 'https://submissions.worldaerospacecongress.org/event/2/abstra
   <video class="hero-video" autoplay muted loop playsinline preload="auto"
          poster="/images/halic-poster.jpg" aria-hidden="true"></video>
   <div class="hero-shade" aria-hidden="true"></div>
-  <svg class="hero-routes" aria-hidden="true"></svg>
 
   <div class="hero-inner">
     <h1 class="hero-title">{copy.title}</h1>
@@ -58,21 +57,17 @@ const submitUrl = 'https://submissions.worldaerospacecongress.org/event/2/abstra
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: 50% 45%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
   }
+  .hero-video.ready { opacity: 1; }
+  .hero { background: var(--night) url('/images/halic-poster.jpg') center 45% / cover no-repeat; }
   .hero-shade {
     position: absolute; inset: 0;
     background:
       linear-gradient(to bottom, rgba(15,23,32,.55) 0%, rgba(15,23,32,0) 18%),
       linear-gradient(to top, rgba(15,23,32,.88) 0%, rgba(15,23,32,.5) 42%, rgba(15,23,32,0) 72%);
   }
-  .hero-routes {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
-            mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
-  }
-
   .hero-inner {
     position: absolute;
     /* Menüdeki .wrap ile aynı sol kenar */
@@ -115,14 +110,6 @@ const submitUrl = 'https://submissions.worldaerospacecongress.org/event/2/abstra
   }
   .hero-days { margin-left: .75rem; padding-left: .75rem; border-left: 1px solid rgba(255,255,255,.35); font-variant-numeric: lining-nums; }
 
-  .hero-routes :global(.route) {
-    fill: none; stroke: #fff; stroke-opacity: .42;
-    stroke-width: 1; vector-effect: non-scaling-stroke;
-  }
-  .hero-routes :global(.route.drawn) { transition: stroke-dashoffset 2.8s cubic-bezier(.45,.05,.2,1); }
-  .hero-routes :global(.plane) { fill: #fff; }
-  .hero-routes :global(.hub) { fill: #fff; }
-  .hero-routes :global(.hub-ring) { fill: none; stroke: #fff; stroke-opacity: .6; stroke-width: 1; vector-effect: non-scaling-stroke; }
 
   @media (max-width: 640px) {
     .hero-lead { display: none; }
@@ -135,74 +122,19 @@ const submitUrl = 'https://submissions.worldaerospacecongress.org/event/2/abstra
   const daysEl = document.querySelector('[data-days]');
   if (daysEl) daysEl.textContent = String(Math.max(0, Math.ceil((target - Date.now()) / 86400000)));
 
-  const svg = document.querySelector<SVGSVGElement>('.hero-routes');
   const video = document.querySelector<HTMLVideoElement>('.hero-video');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (video) {
+    video.removeAttribute('autoplay');
+    video.preload = 'auto';
     video.src = window.innerWidth <= 900 ? '/videos/halic-960.mp4' : '/videos/halic-1600.mp4';
-    if (reduce) video.removeAttribute('autoplay'); else video.play().catch(() => {});
+    // Video tamamen akacak kadar yüklenmeden oynatma: o zamana kadar durgun kare görünür.
+    if (!reduce) {
+      video.addEventListener('canplaythrough', () => {
+        video.play().then(() => video.classList.add('ready')).catch(() => {});
+      }, { once: true });
+      video.load();
+    }
   }
 
-  // Dünyadan İstanbul'a: rotalar ufkun üstünde, şehrin semasında buluşur.
-  const ORIGINS = [180, 157, -158, -128, -52, -22, 0, 22];
-  const NS = 'http://www.w3.org/2000/svg';
-  let first = true;
-
-  function build() {
-    if (!svg) return;
-    const w = svg.clientWidth, h = svg.clientHeight;
-    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    svg.innerHTML = '';
-    const hub = { x: w * (w > 900 ? 0.62 : 0.55), y: h * 0.2 };
-    const reach = Math.hypot(w, h);
-
-    ORIGINS.forEach((deg, i) => {
-      const a = (deg * Math.PI) / 180;
-      const sx = hub.x + Math.cos(a) * reach, sy = hub.y + Math.sin(a) * reach;
-      const mx = (sx + hub.x) / 2, my = (sy + hub.y) / 2;
-      const len = Math.hypot(hub.x - sx, hub.y - sy);
-      const nx = -(hub.y - sy) / len, ny = (hub.x - sx) / len;
-      const bend = len * 0.24 * (ny > 0 ? -1 : 1);
-      const p = document.createElementNS(NS, 'path');
-      p.setAttribute('d', `M${sx},${sy} Q${mx + nx * bend},${my + ny * bend} ${hub.x},${hub.y}`);
-      p.setAttribute('class', 'route');
-      p.id = `route-${i}`;
-      svg.appendChild(p);
-      if (reduce) return;
-
-      if (first) {
-        const L = p.getTotalLength();
-        p.style.strokeDasharray = `${L}`;
-        p.style.strokeDashoffset = `${L}`;
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          p.classList.add('drawn');
-          p.style.transitionDelay = `${0.5 + i * 0.16}s`;
-          p.style.strokeDashoffset = '0';
-        }));
-      }
-      const dot = document.createElementNS(NS, 'circle');
-      dot.setAttribute('r', '1.8'); dot.setAttribute('class', 'plane');
-      const m = document.createElementNS(NS, 'animateMotion');
-      m.setAttribute('dur', `${10 + (i % 3) * 3}s`);
-      m.setAttribute('begin', `${3.5 + i * 1.4}s`);
-      m.setAttribute('repeatCount', 'indefinite');
-      m.setAttribute('keyPoints', '0;1'); m.setAttribute('keyTimes', '0;1');
-      m.setAttribute('calcMode', 'spline'); m.setAttribute('keySplines', '.3 0 .6 1');
-      const mp = document.createElementNS(NS, 'mpath');
-      mp.setAttribute('href', `#route-${i}`);
-      m.appendChild(mp); dot.appendChild(m); svg.appendChild(dot);
-    });
-
-    const ring = document.createElementNS(NS, 'circle');
-    ring.setAttribute('cx', `${hub.x}`); ring.setAttribute('cy', `${hub.y}`); ring.setAttribute('r', '8');
-    ring.setAttribute('class', 'hub-ring');
-    const c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', `${hub.x}`); c.setAttribute('cy', `${hub.y}`); c.setAttribute('r', '2.6');
-    c.setAttribute('class', 'hub');
-    svg.append(ring, c);
-    first = false;
-  }
-  build();
-  let t: number | undefined;
-  window.addEventListener('resize', () => { clearTimeout(t); t = window.setTimeout(build, 150); });
 </script>
