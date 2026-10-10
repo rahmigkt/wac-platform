@@ -1,126 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
 
 @import "tailwindcss";
 
+/*
+  WAC — akademi yayını dili.
+  Beyaz kâğıt, mürekkep, tek kurumsal renk (bordo). Gösteriş yalnızca açılış filminde.
+*/
 :root {
-  --night:       #08111F;
-  --night-mid:   #0D1B2E;
-  --brass:       #A07848;
-  --brass-light: #C49A62;
-  --brass-pale:  #D9BC94;
-  --steel:       #DCE3ED;
-  --mist:        #F2F4F7;
-  --white:       #FAFBFC;
-  --text:        #161C28;
-  --text-muted:  #5A6275;
-  --rule:        rgba(0,0,0,0.09);
+  --paper:   #FFFFFF;
+  --ink:     #1A1F26;
+  --slate:   #59626E;
+  --rule:    #D9DCE0;
+  --wash:    #F5F6F7;
+  --oxblood: #7A1E2C;
+  --oxblood-deep: #5E1621;
+  --night:   #0F1720;
+
+  --serif: 'Source Serif 4 Variable', 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+  --sans:  'Public Sans Variable', 'Public Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  --gutter: clamp(1.25rem, 5vw, 5.5rem);
+  --measure: 38rem;
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text);
-    background: var(--white);
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
     -webkit-font-smoothing: antialiased;
+    font-variant-numeric: oldstyle-nums proportional-nums;
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--serif);
     font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    font-variant-numeric: lining-nums;
   }
+
+  a { color: inherit; }
+
+  :focus-visible { outline: 2px solid var(--oxblood); outline-offset: 3px; }
 }
 
 @layer components {
-  /* Decorative rule — yatay çizgi */
-  .brass-rule {
-    width: 48px;
-    height: 1px;
-    background: var(--brass);
-    display: block;
+  .wrap {
+    max-width: 82rem;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
   }
 
-  /* Section eyebrow — UPPERCASE YOK, küçük italic serif */
-  .eyebrow {
-    font-family: 'EB Garamond', serif;
-    font-size: 0.9375rem;
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 0.01em;
-    color: var(--brass);
-  }
-
-  .nav-link {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: rgba(255,255,255,0.65);
-    transition: color 0.2s;
-  }
-
-  .nav-link:hover {
-    color: var(--brass-pale);
-  }
-
-  /* Birincil buton */
-  .btn-primary {
+  .btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.75rem;
-    background: var(--brass);
-    color: #fff;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    transition: background 0.2s;
-    border: none;
-    cursor: pointer;
+    padding: .8rem 1.5rem;
+    font-family: var(--sans);
+    font-size: .9375rem;
+    font-weight: 500;
+    line-height: 1.2;
     text-decoration: none;
-  }
-
-  .btn-primary:hover {
-    background: var(--brass-light);
-  }
-
-  /* İkincil buton */
-  .btn-outline {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.75rem;
-    border: 1px solid rgba(160,120,72,0.45);
-    color: var(--brass-pale);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    transition: all 0.2s;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    transition: background-color .2s, color .2s, border-color .2s;
     cursor: pointer;
-    background: transparent;
-    text-decoration: none;
   }
-
-  .btn-outline:hover {
-    border-color: var(--brass-pale);
-    color: #fff;
-  }
+  .btn-primary { background: var(--oxblood); color: #fff; }
+  .btn-primary:hover { background: var(--oxblood-deep); }
+  .btn-line { border-color: currentColor; color: var(--ink); }
+  .btn-line:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+  html { scroll-behavior: auto; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 
-
 html, body { overflow-x: clip; }
-a { text-decoration: none; }

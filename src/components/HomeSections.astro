@@ -1,0 +1,165 @@
+---
+interface Props { lang: 'tr' | 'en'; }
+const { lang } = Astro.props;
+const en = lang === 'en';
+const submitUrl = 'https://submissions.worldaerospacecongress.org/event/2/abstracts/';
+
+const c = en ? {
+  aboutTitle: 'A world congress that meets every three years',
+  about: [
+    'The World Aerospace Congress (WAC) is a permanent international platform that convenes every three years in a different member country. It treats aerospace science, space technologies, aviation management and law, and the history of flight as a single field of enquiry.',
+    'Participation is organised through national delegations. Each member country is represented by one recognised body, and the delegations together decide where the next congress will be held.',
+  ],
+  notes: [
+    ['Every three years', 'in a different member country.'],
+    ['Organiser', 'Turkish Society for History of Science (TBTK), founded in 1989.'],
+    ['Declaration', 'The congress declaration is signed by the member delegations.'],
+    ['2033', 'Istanbul is proposed as host again, for the centenary of Turkish Airlines.'],
+  ],
+  symTitle: 'Five symposium axes',
+  symIntro: 'Abstracts are invited under five axes. Each axis is reviewed by its own scientific committee.',
+  symCta: 'Submit an abstract',
+  symDeadline: 'Deadline: 31 March 2027, 23:59 (Istanbul time).',
+  delTitle: 'National delegations',
+  del: 'Organisations working in aviation and space may apply to become the official delegation of their country. Delegations hold the vote on the host of the next congress and may organise national sessions, panels and exhibitions during the congress.',
+  whoTitle: 'Who may apply',
+  who: ['Aviation and aerospace associations', 'Space agencies and research foundations', 'Societies of aeronautical engineers', 'Flight schools and civil aviation bodies', 'Non-governmental organisations in the sector'],
+  delNote: 'The delegation application form will open soon.',
+} : {
+  aboutTitle: 'Üç yılda bir toplanan bir dünya kongresi',
+  about: [
+    'Dünya Havacılık ve Uzay Kongresi (WAC), üç yılda bir farklı bir üye ülkede toplanan kalıcı bir uluslararası platformdur. Havacılık bilimlerini, uzay teknolojilerini, havacılık yönetimi ve hukukunu ve uçuşun tarihini tek bir bilgi alanı olarak ele alır.',
+    'Katılım ülke delegasyonları aracılığıyla örgütlenir. Her üye ülkeyi tanınmış tek bir kuruluş temsil eder; bir sonraki kongrenin nerede toplanacağına delegasyonlar birlikte karar verir.',
+  ],
+  notes: [
+    ['Üç yılda bir', 'her seferinde farklı bir üye ülkede.'],
+    ['Düzenleyen', 'Türk Bilim Tarihi Kurumu (TBTK), 1989’da kuruldu.'],
+    ['Deklarasyon', 'Kongre deklarasyonu üye delegasyonlarca imzalanır.'],
+    ['2033', 'Türk Hava Yolları’nın 100. yılı vesilesiyle İstanbul yeniden ev sahibi olarak öneriliyor.'],
+  ],
+  symTitle: 'Beş sempozyum ekseni',
+  symIntro: 'Bildiriler beş eksen altında kabul edilir. Her eksen kendi bilim kurulu tarafından değerlendirilir.',
+  symCta: 'Bildiri gönder',
+  symDeadline: 'Son gün: 31 Mart 2027, saat 23.59 (İstanbul).',
+  delTitle: 'Ülke delegasyonları',
+  del: 'Havacılık ve uzay alanında çalışan kuruluşlar, ülkelerinin resmî delegasyonu olmak için başvurabilir. Delegasyonlar bir sonraki kongrenin ev sahibini oylar; kongre süresince ulusal oturum, panel ve sergi düzenleyebilir.',
+  whoTitle: 'Kimler başvurabilir',
+  who: ['Havacılık ve uzay dernekleri', 'Uzay ajansları ve araştırma vakıfları', 'Havacılık mühendisleri birlikleri', 'Uçuş okulları ve sivil havacılık kurumları', 'Sektördeki sivil toplum kuruluşları'],
+  delNote: 'Delegasyon başvuru formu yakında açılacak.',
+};
+
+const axes = [
+  ['01', 'Havacılık Bilimleri ve Mühendisliği', 'Aerospace Sciences and Engineering'],
+  ['02', 'Uzay Bilimleri ve Teknolojileri', 'Space Sciences and Technologies'],
+  ['03', 'Havacılık Yönetimi, Ekonomisi ve Hukuku', 'Aviation Management, Economics and Law'],
+  ['04', 'Havacılık ve Uzay Ekosistemi', 'Aerospace Ecosystem'],
+  ['05', 'Havacılık Tarihi ve Toplum', 'Aviation History and Society'],
+];
+---
+
+<section class="sec" id="kongre">
+  <div class="wrap grid">
+    <h2 class="sec-title">{c.aboutTitle}</h2>
+    <div class="sec-body">
+      {c.about.map(p => <p>{p}</p>)}
+    </div>
+    <dl class="notes">
+      {c.notes.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+    </dl>
+  </div>
+</section>
+
+<section class="sec sec--wash" id="sempozyumlar">
+  <div class="wrap grid">
+    <h2 class="sec-title">{c.symTitle}</h2>
+    <div class="sec-body">
+      <p>{c.symIntro}</p>
+      <ol class="axes">
+        {axes.map(([n, tr, enT]) => (
+          <li>
+            <span class="axis-code">{n}</span>
+            <span class="axis-name">{en ? enT : tr}</span>
+            <span class="axis-alt" lang={en ? 'tr' : 'en'}>{en ? tr : enT}</span>
+          </li>
+        ))}
+      </ol>
+      <div class="sym-cta">
+        <a class="btn btn-primary" href={submitUrl}>{c.symCta}</a>
+        <p>{c.symDeadline}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="delegasyon">
+  <div class="wrap grid">
+    <h2 class="sec-title">{c.delTitle}</h2>
+    <div class="sec-body">
+      <p>{c.del}</p>
+      <p class="muted">{c.delNote}</p>
+    </div>
+    <div class="notes">
+      <p class="notes-head">{c.whoTitle}</p>
+      <ul class="who">{c.who.map(w => <li>{w}</li>)}</ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sec { padding: clamp(4.5rem, 10vw, 8rem) 0; border-top: 1px solid var(--rule); }
+  .sec:first-of-type { border-top: 0; }
+  .sec--wash { background: var(--wash); border-top: 0; }
+
+  /* Dergi düzeni: başlık sol sütunda, metin ortada, kenar notları sağda */
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(14rem, 1fr) minmax(0, 2.1fr) minmax(12rem, 1fr);
+    column-gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .sec-title {
+    margin: 0;
+    font-size: clamp(1.875rem, 3vw, 2.625rem);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+  .sec-body { max-width: var(--measure); }
+  .sec-body p { margin: 0 0 1.1em; }
+  .sec-body p:last-child { margin-bottom: 0; }
+  .muted { color: var(--slate); font-style: italic; }
+
+  .notes { margin: 0; border-top: 1px solid var(--ink); padding-top: 1rem; }
+  .notes div + div { margin-top: 1.1rem; }
+  .notes dt, .notes-head {
+    margin: 0;
+    font-family: var(--sans); font-size: .875rem; font-weight: 600;
+  }
+  .notes dd { margin: .2rem 0 0; font-size: 1rem; line-height: 1.5; color: var(--slate); }
+
+  .who { list-style: none; margin: .6rem 0 0; padding: 0; }
+  .who li { font-size: 1rem; line-height: 1.5; color: var(--slate); padding: .45rem 0; border-bottom: 1px solid var(--rule); }
+
+  .axes { list-style: none; margin: 2rem 0 0; padding: 0; border-top: 1px solid var(--ink); }
+  .axes li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    column-gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .axis-code { grid-row: span 2; font-family: var(--sans); font-size: .875rem; color: var(--oxblood); padding-top: .35rem; font-variant-numeric: tabular-nums lining-nums; }
+  .axis-name { font-size: clamp(1.25rem, 1.8vw, 1.5rem); line-height: 1.3; }
+  .axis-alt { font-size: .9375rem; font-style: italic; color: var(--slate); margin-top: .15rem; }
+
+  .sym-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2.25rem; }
+  .sym-cta p { margin: 0; font-family: var(--sans); font-size: .875rem; color: var(--slate); }
+
+  @media (max-width: 1080px) {
+    .grid { grid-template-columns: minmax(0, 1fr) minmax(12rem, .55fr); row-gap: 2rem; }
+    .sec-title { grid-column: 1 / -1; }
+  }
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: 1fr; }
+    .notes { margin-top: .5rem; }
+  }
+</style>
