@@ -1,0 +1,299 @@
+---
+interface Props { lang: 'tr' | 'en'; }
+const { lang } = Astro.props;
+
+const copy = {
+  tr: {
+    title: ['Dünya Havacılık', 've Uzay Kongresi'],
+    place: 'İstanbul, Ekim 2027',
+    lead: 'Havacılık ve uzay bilimlerini, endüstrisini ve tarihini ülke delegasyonlarıyla bir araya getiren üç yıllık uluslararası platformun ilk buluşması.',
+    submit: 'Bildiri gönder',
+    about: 'Kongreyi tanıyın',
+    organizer: 'Düzenleyen: Türk Bilim Tarihi Kurumu',
+    days: 'gün',
+    until: 'kongreye kalan',
+  },
+  en: {
+    title: ['World Aerospace', 'Congress'],
+    place: 'Istanbul, October 2027',
+    lead: 'The opening meeting of a triennial international platform bringing aerospace science, industry and history together through national delegations.',
+    submit: 'Submit an abstract',
+    about: 'About the congress',
+    organizer: 'Organised by the Turkish Society for History of Science',
+    days: 'days',
+    until: 'until the congress',
+  },
+}[lang];
+
+const submitUrl = 'https://submissions.worldaerospacecongress.org/event/2/abstracts/';
+---
+
+<section class="hero" aria-label={copy.title.join(' ')}>
+  <video class="hero-video" autoplay muted loop playsinline preload="auto"
+         poster="/images/ayasofya-poster.jpg" aria-hidden="true">
+  </video>
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <!-- Dünyadan İstanbul'a uçuş rotaları -->
+  <svg class="hero-routes" aria-hidden="true" preserveAspectRatio="none"></svg>
+
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span>{copy.title[0]}</span>
+      <span>{copy.title[1]}</span>
+    </h1>
+    <p class="hero-place">{copy.place}</p>
+    <p class="hero-lead">{copy.lead}</p>
+    <div class="hero-actions">
+      <a class="hero-btn hero-btn--solid" href={submitUrl}>{copy.submit}</a>
+      <a class="hero-btn hero-btn--line" href="#kongre">{copy.about}</a>
+    </div>
+    <p class="hero-org">{copy.organizer}</p>
+  </div>
+
+  <div class="hero-count" aria-live="off">
+    <span class="hero-count-num" data-days>—</span>
+    <span class="hero-count-lbl">{copy.days}<br />{copy.until}</span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    --brass: #C9A26B;
+    --dusk: #F2C9A8;
+    position: relative;
+    height: 100svh;
+    min-height: 620px;
+    overflow: hidden;
+    background: #0A1628;
+    color: #fff;
+  }
+
+  .hero-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 52% 40%;
+  }
+
+  /* Gün batımı gökyüzü çok parlak: yazının olduğu sol alt köşeyi ve menünün olduğu üst şeridi karart */
+  .hero-shade {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(10,22,40,.75) 0%, rgba(10,22,40,0) 22%),
+      linear-gradient(to top, rgba(10,22,40,.92) 0%, rgba(10,22,40,.55) 38%, rgba(10,22,40,0) 70%),
+      linear-gradient(to right, rgba(10,22,40,.55) 0%, rgba(10,22,40,0) 55%);
+  }
+
+  .hero-routes {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 100%);
+            mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 100%);
+  }
+
+  .hero-content {
+    position: absolute;
+    left: clamp(1.25rem, 6vw, 6rem);
+    right: clamp(1.25rem, 6vw, 6rem);
+    bottom: clamp(2.5rem, 9vh, 6rem);
+    max-width: 52rem;
+  }
+
+  .hero-title {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.9rem, 7.2vw, 7.5rem);
+    line-height: .9;
+    letter-spacing: -.02em;
+    text-shadow: 0 2px 30px rgba(10,22,40,.45);
+  }
+  .hero-title span { display: block; }
+
+  .hero-place {
+    margin: 1.5rem 0 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: 400;
+    color: var(--dusk);
+  }
+
+  .hero-lead {
+    margin: .9rem 0 0;
+    max-width: 38rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(.95rem, 1.15vw, 1.0625rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255,255,255,.82);
+  }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+
+  .hero-btn {
+    display: inline-flex; align-items: center;
+    padding: .85rem 1.6rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9375rem; font-weight: 500;
+    letter-spacing: .01em;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background-color .2s, color .2s, border-color .2s;
+  }
+  .hero-btn--solid { background: var(--brass); color: #0A1628; }
+  .hero-btn--solid:hover { background: var(--dusk); }
+  .hero-btn--line { border: 1px solid rgba(255,255,255,.55); color: #fff; }
+  .hero-btn--line:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+  .hero-btn:focus-visible { outline: 2px solid var(--dusk); outline-offset: 3px; }
+
+  .hero-org {
+    margin: 2rem 0 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .8125rem;
+    color: rgba(255,255,255,.6);
+  }
+
+  .hero-count {
+    position: absolute;
+    right: clamp(1.25rem, 5vw, 5rem);
+    bottom: clamp(2.5rem, 9vh, 6rem);
+    display: flex; align-items: flex-end; gap: .75rem;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .hero-count-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: .85;
+    font-variant-numeric: lining-nums;
+  }
+  .hero-count-lbl { font-size: .8125rem; line-height: 1.35; color: rgba(255,255,255,.65); padding-bottom: .2rem; }
+
+  /* Rotalar */
+  .hero-routes :global(.route) {
+    fill: none;
+    stroke: var(--brass);
+    stroke-width: 1.1;
+    stroke-opacity: .7;
+    vector-effect: non-scaling-stroke;
+  }
+  .hero-routes :global(.route.drawn) { transition: stroke-dashoffset 2.6s cubic-bezier(.45,.05,.2,1); }
+  .hero-routes :global(.plane) { fill: #fff; }
+  .hero-routes :global(.hub) { fill: var(--dusk); }
+  .hero-routes :global(.hub-ring) { fill: none; stroke: var(--dusk); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+  @media (max-width: 900px) {
+    .hero-count { display: none; }
+    .hero-shade {
+      background:
+        linear-gradient(to bottom, rgba(10,22,40,.7) 0%, rgba(10,22,40,0) 20%),
+        linear-gradient(to top, rgba(10,22,40,.95) 0%, rgba(10,22,40,.7) 45%, rgba(10,22,40,0) 80%);
+    }
+  }
+  @media (max-width: 560px) {
+    .hero-lead { display: none; }
+  }
+</style>
+
+<script>
+  // ── Geri sayım: yalnızca gün ──
+  const target = new Date('2027-10-04T09:00:00+03:00').getTime();
+  const daysEl = document.querySelector('[data-days]');
+  if (daysEl) daysEl.textContent = String(Math.max(0, Math.ceil((target - Date.now()) / 86400000)));
+
+  // ── Uçuş rotaları ──
+  // Hedef: Ayasofya kubbesinin hemen üstü (videonun kendi koordinatlarında, 0–1).
+  const HUB = { x: 0.515, y: 0.30 };
+  const VIDEO_AR = 16 / 9;
+  // Rotaların ekran dışından geldiği yönler (derece; 0 = sağ, 90 = aşağı)
+  const ORIGINS = [180, 155, -155, -125, -55, -20, 15];
+
+  const svg = document.querySelector<SVGSVGElement>('.hero-routes');
+  const video = document.querySelector<HTMLVideoElement>('.hero-video');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (video) {
+    video.src = window.innerWidth <= 900 ? '/videos/ayasofya-960.mp4' : '/videos/ayasofya-1600.mp4';
+    if (reduce) video.removeAttribute('autoplay'); else video.play().catch(() => {});
+  }
+  const NS = 'http://www.w3.org/2000/svg';
+  let firstDraw = true;
+
+  function hubOnScreen(w: number, h: number) {
+    // object-fit: cover + object-position: 52% 40%
+    const vh = Math.max(h, w / VIDEO_AR), vw = vh * VIDEO_AR;
+    const ox = (w - vw) * 0.52, oy = (h - vh) * 0.40;
+    return { x: ox + HUB.x * vw, y: oy + HUB.y * vh };
+  }
+
+  function build() {
+    if (!svg) return;
+    const w = svg.clientWidth, h = svg.clientHeight;
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.innerHTML = '';
+    const hub = hubOnScreen(w, h);
+    const reach = Math.hypot(w, h);
+
+    ORIGINS.forEach((deg, i) => {
+      const a = (deg * Math.PI) / 180;
+      const sx = hub.x + Math.cos(a) * reach, sy = hub.y + Math.sin(a) * reach;
+      // Kontrol noktası: yolun ortasından yukarıya bükülmüş büyük daire hissi
+      const mx = (sx + hub.x) / 2, my = (sy + hub.y) / 2;
+      const len = Math.hypot(hub.x - sx, hub.y - sy);
+      const nx = -(hub.y - sy) / len, ny = (hub.x - sx) / len;
+      const bend = len * 0.26 * (ny > 0 ? -1 : 1);
+      const d = `M${sx},${sy} Q${mx + nx * bend},${my + ny * bend} ${hub.x},${hub.y}`;
+
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', d);
+      p.setAttribute('class', 'route');
+      p.id = `route-${i}`;
+      svg.appendChild(p);
+
+      if (!reduce) {
+        const L = p.getTotalLength();
+        if (firstDraw) {
+          p.style.strokeDasharray = `${L}`;
+          p.style.strokeDashoffset = `${L}`;
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            p.classList.add('drawn');
+            p.style.transitionDelay = `${0.4 + i * 0.18}s`;
+            p.style.strokeDashoffset = '0';
+          }));
+        }
+        // Rota boyunca İstanbul'a süzülen tek bir ışık
+        const dot = document.createElementNS(NS, 'circle');
+        dot.setAttribute('r', '2.2');
+        dot.setAttribute('class', 'plane');
+        const motion = document.createElementNS(NS, 'animateMotion');
+        motion.setAttribute('dur', `${9 + (i % 3) * 2.5}s`);
+        motion.setAttribute('begin', `${3.2 + i * 1.3}s`);
+        motion.setAttribute('repeatCount', 'indefinite');
+        motion.setAttribute('keyPoints', '0;1');
+        motion.setAttribute('keyTimes', '0;1');
+        motion.setAttribute('calcMode', 'spline');
+        motion.setAttribute('keySplines', '.3 0 .6 1');
+        const mpath = document.createElementNS(NS, 'mpath');
+        mpath.setAttribute('href', `#route-${i}`);
+        motion.appendChild(mpath);
+        dot.appendChild(motion);
+        svg.appendChild(dot);
+      }
+    });
+
+    const ring = document.createElementNS(NS, 'circle');
+    ring.setAttribute('cx', `${hub.x}`); ring.setAttribute('cy', `${hub.y}`);
+    ring.setAttribute('r', '9'); ring.setAttribute('class', 'hub-ring');
+    ring.setAttribute('opacity', '.6');
+    const dotHub = document.createElementNS(NS, 'circle');
+    dotHub.setAttribute('cx', `${hub.x}`); dotHub.setAttribute('cy', `${hub.y}`);
+    dotHub.setAttribute('r', '3'); dotHub.setAttribute('class', 'hub');
+    svg.append(ring, dotHub);
+    firstDraw = false;
+  }
+
+  build();
+  let t: number | undefined;
+  window.addEventListener('resize', () => { clearTimeout(t); t = window.setTimeout(build, 150); });
+</script>

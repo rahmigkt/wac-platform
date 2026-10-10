@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
 import { t } from '../i18n';
 
 const lang = 'tr';
@@ -12,93 +13,10 @@ const i18n = t(lang);
   description="Dünya Havacılık ve Uzay Kongresi. İstanbul, Ekim 2027. Türk Bilim Tarihi Kurumu Derneği düzenlenmesiyle."
 >
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero" aria-label="Hero">
-
-    <!-- Video / Görsel arka plan -->
-    <div class="hero-bg" aria-hidden="true">
-      <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        poster="/images/istanbul-hero.jpg"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
-      <div class="hero-overlay"></div>
-    </div>
-
-    <!-- İçerik -->
-    <div class="hero-body">
-      <div class="hero-kicker">
-        <span class="hero-kicker-line"></span>
-        <span class="hero-kicker-text">{i18n.hero.edition}</span>
-        <span class="hero-kicker-line"></span>
-      </div>
-
-      <h1 class="hero-title">
-        Dünya<br/>
-        <em>Havacılık ve Uzay</em><br/>
-        Kongresi
-      </h1>
-
-      <div class="hero-meta-row">
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">Şehir</span>
-          <span class="hero-meta-value">{i18n.hero.location}</span>
-        </div>
-        <div class="hero-meta-divider" aria-hidden="true"></div>
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">Tarih</span>
-          <span class="hero-meta-value">{i18n.hero.date}</span>
-        </div>
-        <div class="hero-meta-divider" aria-hidden="true"></div>
-        <div class="hero-meta-item">
-          <span class="hero-meta-label">Düzenleyen</span>
-          <span class="hero-meta-value">TBTK</span>
-        </div>
-      </div>
-
-      <div class="hero-actions">
-        <a href="/delegation" class="btn-primary">{i18n.hero.cta_delegation}</a>
-        <a href="/about" class="btn-ghost">{i18n.hero.cta_about}</a>
-      </div>
-    </div>
-
-    <!-- Geri sayım -->
-    <div class="hero-countdown" id="countdown-strip">
-      <div class="countdown-inner">
-        <span class="countdown-label">{i18n.countdown.until}</span>
-        <div class="countdown-units">
-          <div class="cd-unit">
-            <span class="cd-num" id="cd-days">—</span>
-            <span class="cd-lbl">{i18n.countdown.days}</span>
-          </div>
-          <span class="cd-sep" aria-hidden="true">:</span>
-          <div class="cd-unit">
-            <span class="cd-num" id="cd-hours">—</span>
-            <span class="cd-lbl">{i18n.countdown.hours}</span>
-          </div>
-          <span class="cd-sep" aria-hidden="true">:</span>
-          <div class="cd-unit">
-            <span class="cd-num" id="cd-minutes">—</span>
-            <span class="cd-lbl">{i18n.countdown.minutes}</span>
-          </div>
-          <span class="cd-sep" aria-hidden="true">:</span>
-          <div class="cd-unit">
-            <span class="cd-num" id="cd-seconds">—</span>
-            <span class="cd-lbl">{i18n.countdown.seconds}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
+  <Hero lang="tr" />
 
   <!-- ═══ HAKKINDA ═══ -->
-  <section class="section-about">
+  <section class="section-about" id="kongre">
     <div class="container">
       <div class="about-grid">
         <div class="about-left">
@@ -747,42 +665,3 @@ const i18n = t(lang);
 }
 </style>
 
-<script>
-  // ── Video fade-in ──
-  const video = document.querySelector('.hero-video') as HTMLVideoElement | null;
-  if (video) {
-    const showVideo = () => video.classList.add('loaded');
-    if (video.readyState >= 3) {
-      showVideo();
-    } else {
-      video.addEventListener('canplaythrough', showVideo, { once: true });
-      setTimeout(showVideo, 2500);
-    }
-  }
-
-  // ── Countdown ──
-  const target = new Date('2027-10-01T09:00:00+03:00');
-
-  function pad(n: number) { return String(n).padStart(2, '0'); }
-
-  function tick() {
-    const now = new Date();
-    const diff = target.getTime() - now.getTime();
-    if (diff <= 0) return;
-
-    const days  = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins  = Math.floor((diff % 3600000) / 60000);
-    const secs  = Math.floor((diff % 60000) / 1000);
-
-    const el = (id: string) => document.getElementById(id);
-    const d = el('cd-days'), h = el('cd-hours'), m = el('cd-minutes'), s = el('cd-seconds');
-    if (d) d.textContent = String(days);
-    if (h) h.textContent = pad(hours);
-    if (m) m.textContent = pad(mins);
-    if (s) s.textContent = pad(secs);
-  }
-
-  tick();
-  setInterval(tick, 1000);
-</script>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
 import { t } from '../../i18n';
 
 const lang = 'en';
@@ -12,58 +13,10 @@ const i18n = t(lang);
   description="The World Aerospace Congress. Istanbul, October 2027. Organized by Turkish Society for History of Science."
 >
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero" aria-label="Hero">
-    <div class="hero-bg" aria-hidden="true">
-      <div class="hero-grid"></div>
-      <div class="hero-gradient"></div>
-    </div>
-
-    <div class="hero-inner">
-      <div class="hero-meta">
-        <span class="hero-edition">{i18n.hero.edition}</span>
-      </div>
-
-      <h1 class="hero-title">
-        <span class="hero-title-line">World Aerospace</span>
-        <span class="hero-title-line hero-title-line--accent">Congress</span>
-      </h1>
-
-      <div class="hero-dateline">
-        <span class="hero-date">{i18n.hero.date}</span>
-        <span class="hero-sep" aria-hidden="true">—</span>
-        <span class="hero-location">{i18n.hero.location}</span>
-      </div>
-
-      <p class="hero-tagline">{i18n.hero.tagline}</p>
-
-      <div class="hero-actions">
-        <a href="/en/delegation" class="btn-primary">{i18n.hero.cta_delegation}</a>
-        <a href="/en/about" class="btn-outline">{i18n.hero.cta_about}</a>
-      </div>
-
-      <div class="hero-org">
-        <span class="hero-org-label">{i18n.hero.organized_by}</span>
-        <span class="hero-org-name">Turkish Society for History of Science (TBTK)</span>
-      </div>
-    </div>
-
-    <!-- Countdown -->
-    <div class="countdown-strip">
-      <div class="countdown-inner">
-        <p class="countdown-label">{i18n.countdown.until}</p>
-        <div class="countdown-units" id="countdown">
-          <div class="countdown-unit"><span class="cd-num" id="cd-days">—</span><span class="cd-label">{i18n.countdown.days}</span></div>
-          <div class="countdown-unit"><span class="cd-num" id="cd-hours">—</span><span class="cd-label">{i18n.countdown.hours}</span></div>
-          <div class="countdown-unit"><span class="cd-num" id="cd-minutes">—</span><span class="cd-label">{i18n.countdown.minutes}</span></div>
-          <div class="countdown-unit"><span class="cd-num" id="cd-seconds">—</span><span class="cd-label">{i18n.countdown.seconds}</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Hero lang="en" />
 
   <!-- ═══ ABOUT ═══ -->
-  <section class="section-about">
+  <section class="section-about" id="kongre">
     <div class="container">
       <div class="about-grid">
         <div class="about-text">
@@ -215,19 +168,3 @@ const i18n = t(lang);
   @media (max-width: 900px) { .about-grid, .delegation-grid { grid-template-columns: 1fr; gap: 3rem; } .countdown-inner { flex-direction: column; gap: 1rem; align-items: flex-start; } }
 </style>
 
-<script>
-  const target = new Date('2027-10-01T09:00:00+03:00');
-  function pad(n: number) { return String(n).padStart(2, '0'); }
-  function tick() {
-    const diff = target.getTime() - new Date().getTime();
-    if (diff <= 0) return;
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const secs = Math.floor((diff % 60000) / 1000);
-    const el = (id: string) => document.getElementById(id);
-    const d = el('cd-days'), h = el('cd-hours'), m = el('cd-minutes'), s = el('cd-seconds');
-    if (d) d.textContent = String(days); if (h) h.textContent = pad(hours); if (m) m.textContent = pad(mins); if (s) s.textContent = pad(secs);
-  }
-  tick(); setInterval(tick, 1000);
-</script>
