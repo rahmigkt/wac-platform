@@ -13,7 +13,7 @@ export const tr = {
 
   // Hero
   hero: {
-    edition: 'Birinci Dünya Havacılık ve Uzay Kongresi',
+    edition: 'Dünya Havacılık ve Uzay Kongresi · 2027',
     date: 'Ekim 2027',
     location: 'İstanbul, Türkiye',
     tagline: 'Havacılık ve uzay bilimleri, teknolojileri ve tarihinin\nglobal buluşma noktası.',

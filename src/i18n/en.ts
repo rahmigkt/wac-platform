@@ -13,7 +13,7 @@ export const en = {
 
   // Hero
   hero: {
-    edition: 'First World Aerospace Congress',
+    edition: 'World Aerospace Congress · 2027',
     date: 'October 2027',
     location: 'Istanbul, Türkiye',
     tagline: 'The global meeting point for aerospace sciences,\ntechnologies, and history.',
