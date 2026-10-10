@@ -42,7 +42,7 @@ cat > /etc/nginx/sites-available/default <<EOF
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
-  location = /kurulum.txt { root $STATUS_DIR; default_type "text/plain; charset=utf-8"; add_header Cache-Control no-store; }
+  location = /kurulum.txt { root $STATUS_DIR; default_type text/plain; charset utf-8; add_header Cache-Control no-store; }
   location / { return 200 "WAC kurulum suruyor. Ilerleme: /kurulum.txt\n"; default_type text/plain; }
 }
 EOF
@@ -221,7 +221,7 @@ server {
   access_log /opt/indico/log/nginx/access.log combined;
   error_log  /opt/indico/log/nginx/error.log;
 
-  location = /kurulum.txt { root $STATUS_DIR; default_type "text/plain; charset=utf-8"; add_header Cache-Control no-store; }
+  location = /kurulum.txt { root $STATUS_DIR; default_type text/plain; charset utf-8; add_header Cache-Control no-store; }
 
   location /.xsf/indico/ {
     internal;
