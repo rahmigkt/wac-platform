@@ -20,16 +20,23 @@ trap 'step "HATA: satır $LINENO başarısız oldu. Ayrıntı: /var/log/wac-inst
 
 step "Kurulum başladı ($(uname -m))"
 
+# İlk açılışta cloud-init ve otomatik güncellemeler apt kilidini tutar; bitmelerini bekle.
+cloud-init status --wait >/dev/null 2>&1 || true
+APT="apt-get -o DPkg::Lock::Timeout=1800 -y -q"
+apt_wait() { while fuser /var/lib/dpkg/lock-frontend /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 10; done; }
+
 # ── 1. Güvenlik duvarı (Oracle Ubuntu imajı 22 dışındaki her şeyi reddeder) ──
 step "Güvenlik duvarı: 80 ve 443 açılıyor"
-iptables -I INPUT 1 -p tcp --dport 80 -m state --state NEW -j ACCEPT
-iptables -I INPUT 1 -p tcp --dport 443 -m state --state NEW -j ACCEPT
+for port in 80 443; do
+  iptables -C INPUT -p tcp --dport $port -m state --state NEW -j ACCEPT 2>/dev/null || \
+    iptables -I INPUT 1 -p tcp --dport $port -m state --state NEW -j ACCEPT
+done
 if command -v netfilter-persistent >/dev/null; then netfilter-persistent save; fi
 
 # ── 2. Paketler ──
 step "Sistem paketleri kuruluyor (birkaç dakika)"
-apt-get update -q
-apt-get install -y -q lsb-release wget curl gnupg nginx
+apt_wait; $APT update
+apt_wait; $APT install lsb-release wget curl gnupg nginx
 # İlerleme sayfasını hemen yayınla
 cat > /etc/nginx/sites-available/default <<EOF
 server {
@@ -43,8 +50,8 @@ systemctl restart nginx
 
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor --yes -o /usr/share/keyrings/pgdg-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/pgdg-archive-keyring.gpg] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-apt-get update -q
-apt-get install -y -q --install-recommends postgresql-16 libpq-dev libxslt1-dev libxml2-dev libffi-dev \
+apt_wait; $APT update
+apt_wait; $APT install --install-recommends postgresql-16 libpq-dev libxslt1-dev libxml2-dev libffi-dev \
   libpcre2-dev libyaml-dev libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
   libncurses-dev xz-utils liblzma-dev uuid-dev build-essential redis-server git libpango1.0-dev \
   libjpeg-turbo8-dev python3.12 python3.12-venv python3.12-dev
