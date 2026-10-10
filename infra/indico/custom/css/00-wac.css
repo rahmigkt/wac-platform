@@ -1,0 +1,11 @@
+/* WAC 2027 kimliği */
+.page-header { background-color: #0A1628 !important; border-bottom: 1px solid rgba(184,150,110,.35); }
+.page-header img.header-logo { height: 56px; margin: 18px 0 12px 40px; }
+#global-menu, .global-menu { background-color: #0E1C33 !important; border-bottom: 2px solid #B8966E; }
+#global-menu a, .global-menu a, #global-menu menu > li > a { color: rgba(255,255,255,.85) !important; }
+#global-menu a:hover, .global-menu a:hover { color: #D4B48A !important; }
+a { color: #8A6A3E; }
+.footer {  padding: 18px 40px; border-top: 1px solid #e6e1d8; color: #6B7280; font-size: 13px; }
+.footer .wac-footer-inner * { line-height: 1.6; }
+.footer .wac-footer-inner a { color: #8A6A3E; margin-left: 1.25em; }
+.footer .wac-name { color: #0A1628; font-family: Georgia, serif; font-size: 15px; letter-spacing: .04em; }

@@ -1,0 +1,16 @@
+{% extends '~footer.html' %}
+
+{% block footer %}
+    <div class="flexrow f-j-space-between f-a-center wac-footer-inner">
+        <div>
+            <span class="wac-name">World Aerospace Congress 2027</span>
+            <span>&nbsp;·&nbsp;Istanbul · {% trans %}Organised by{% endtrans %} Türk Bilim Tarihi Kurumu (TBTK)</span>
+        </div>
+        <nav>
+            <a href="https://worldaerospacecongress.org">worldaerospacecongress.org</a>
+            {% if indico_config.PUBLIC_SUPPORT_EMAIL %}
+                <a href="{{ url_for('core.contact') }}">{% trans %}Contact{% endtrans %}</a>
+            {% endif %}
+        </nav>
+    </div>
+{% endblock %}
