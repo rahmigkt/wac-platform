@@ -1,0 +1,47 @@
+/* WAC 2027 — canlı yayın düzeltmeleri (devir belgesi, madde 7) */
+
+/* 1. Logo: şeffaf dosya, zemin dikdörtgeni yok */
+.header .brand{background:none!important;padding:0}
+.header .brand-symbol{background:none!important;box-shadow:none!important}
+
+/* 2. Hero oranları: başlık ve panel aynı dikey eksende, daha sakin boşluklar */
+.hero-congress-summary .hero-grid{
+  grid-template-columns:minmax(0,1.35fr) minmax(330px,.75fr);
+  gap:clamp(48px,7vw,120px);
+  align-items:end;
+  padding-bottom:clamp(64px,10svh,104px);
+}
+.hero-congress-summary h1{font-size:clamp(46px,5.1vw,82px);margin:22px 0 24px}
+.hero-congress-summary .hero-sub{max-width:620px;font-size:clamp(16px,1.15vw,18px);line-height:1.72}
+.hero-congress-summary .hero-summary-actions{margin-top:34px}
+
+/* 3. "Bir Bakışta" paneli: net başlık, numaralı ve hizalı bilgi satırları */
+.hero-brief{
+  border-left:0!important;padding:30px 30px 10px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.14)!important;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.hero-brief-kicker{font-size:11px!important;letter-spacing:.16em!important;color:#9fb3c2!important;margin:0 0 10px!important}
+.hero-brief h2{font-size:clamp(26px,2vw,32px)!important;line-height:1.1!important;margin:0 0 22px!important;letter-spacing:-.03em}
+.hero-brief-list{counter-reset:brief;border-top:1px solid rgba(255,255,255,.22)}
+.hero-brief-item{
+  counter-increment:brief;
+  display:grid!important;grid-template-columns:34px 1fr!important;column-gap:12px!important;row-gap:4px;
+  padding:18px 0!important;border-bottom:1px solid rgba(255,255,255,.12)!important;
+}
+.hero-brief-item:last-child{border-bottom:0!important}
+.hero-brief-item::before{
+  content:counter(brief,decimal-leading-zero);grid-row:span 2;
+  font-size:12px;letter-spacing:.08em;color:#9fb3c2;padding-top:3px;font-variant-numeric:tabular-nums;
+}
+.hero-brief-item strong{font-size:16px;font-weight:650;color:#fff;letter-spacing:-.01em}
+.hero-brief-item p{margin:0!important;font-size:14.5px;line-height:1.55;color:#cfd8df}
+
+@media(max-width:1050px){
+  .hero-congress-summary .hero-grid{grid-template-columns:1fr;align-items:start}
+  .hero-brief{max-width:620px}
+}
+@media(max-width:720px){
+  .hero-brief{padding:22px 20px 4px!important;margin-top:36px}
+}

@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "integration_target": "Indigo",
+  "mode": "unconnected",
+  "note": "Set an approved HTTPS endpoint for each workflow when the Indigo integration is implemented. No user data is collected by this static package.",
+  "application_categories": [
+    {
+      "key": "bildiri",
+      "language_labels": {
+        "tr": "Bilimsel bildiri",
+        "en": "Scientific abstracts"
+      },
+      "indigo_endpoint": null,
+      "connected": false,
+      "existing_submission_url": "https://submissions.worldaerospacecongress.org/event/2/abstracts/"
+    },
+    {
+      "key": "kayit",
+      "language_labels": {
+        "tr": "Kongre kaydı",
+        "en": "Congress registration"
+      },
+      "indigo_endpoint": null,
+      "connected": false,
+      "existing_submission_url": null
+    },
+    {
+      "key": "delegasyon",
+      "language_labels": {
+        "tr": "Ülke delegasyonu başvurusu",
+        "en": "National delegation application"
+      },
+      "indigo_endpoint": null,
+      "connected": false,
+      "existing_submission_url": null
+    },
+    {
+      "key": "fuar",
+      "language_labels": {
+        "tr": "Fuar ve pavyon başvurusu",
+        "en": "Expo and pavilion application"
+      },
+      "indigo_endpoint": null,
+      "connected": false,
+      "existing_submission_url": null
+    },
+    {
+      "key": "konusmaci",
+      "language_labels": {
+        "tr": "Konuşmacı ve uzman önerisi",
+        "en": "Speaker and expert proposals"
+      },
+      "indigo_endpoint": null,
+      "connected": false,
+      "existing_submission_url": null
+    },
+    {
+      "key": "isbirligi",
+      "language_labels": {
+        "tr": "Sponsorluk ve iş birliği",
+        "en": "Sponsorship and cooperation"
+      },
+      "indigo_endpoint": null,
+      "connected": false,
+      "existing_submission_url": null
+    },
+    {
+      "key": "evsahipligi",
+      "language_labels": {
+        "tr": "Gelecek kongreler için ev sahipliği adaylığı",
+        "en": "Hosting candidacy for future congresses"
+      },
+      "indigo_endpoint": null,
+      "connected": false,
+      "existing_submission_url": null
+    }
+  ]
+}

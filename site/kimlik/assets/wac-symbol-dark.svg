@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 340" role="img" aria-labelledby="wac-title wac-desc">
+<title id="wac-title">WAC</title><desc id="wac-desc">Geometrically aligned folded-paper W A C letterforms. Fold planes are shaded, not outlined.</desc>
+<defs>
+<linearGradient id="front" x1="0" y1="0" x2=".84" y2="1"><stop stop-color="#092637"/><stop offset=".57" stop-color="#244255"/><stop offset="1" stop-color="#6e8698"/></linearGradient>
+<linearGradient id="return" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#133449"/><stop offset="1" stop-color="#6e8698"/></linearGradient>
+<linearGradient id="edge" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#6e8698"/><stop offset="1" stop-color="#8ba0af"/></linearGradient>
+</defs>
+<!-- All diagonal legs share a 300:153 rise/run and 76-unit horizontal-cap width. -->
+<!-- W: twin precisely matched valleys and creases. -->
+<path fill="url(#front)" d="M24 20H100L253 320H177Z"/>
+<path fill="url(#return)" d="M177 320H253L406 20H330Z"/>
+<path fill="url(#front)" d="M330 20H406L559 320H483Z"/>
+<path fill="url(#return)" d="M483 320H559L712 20H636Z"/>
+<path fill="url(#edge)" opacity=".42" d="M177 320H253L234 282Z"/>
+<path fill="url(#edge)" opacity=".4" d="M483 320H559L541 284Z"/>
+<path fill="url(#edge)" opacity=".38" d="M330 20H406L389 54Z"/>
+<!-- A: mirrored 300:153 legs and geometrically centered cross-fold. -->
+<path fill="url(#edge)" d="M658 229H903L926 283H631Z"/>
+<path fill="url(#return)" d="M593 320H669L822 20H746Z"/>
+<path fill="url(#front)" d="M746 20H822L975 320H899Z"/>
+<path fill="url(#edge)" opacity=".4" d="M746 20H822L804 58Z"/>
+<!-- C: folded top and bottom returns joined by an open chevron spine. -->
+<path fill="url(#edge)" d="M1025 20H1260L1222 95H987Z"/>
+<path fill="url(#front)" d="M1025 20H1101L1027.05 165H951.05Z M951.05 165H1027.05L1106.1 320H1030.1Z"/>
+<path fill="url(#return)" d="M1068 245H1260L1222 320H1106Z"/>
+<path fill="url(#edge)" opacity=".42" d="M1025 20H1101L1080 46Z"/>
+<path fill="url(#edge)" opacity=".35" d="M1101 320H1025L1004 287Z"/>
+</svg>

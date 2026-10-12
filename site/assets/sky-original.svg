@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="930" viewBox="0 0 1800 930">
+<defs>
+ <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#26333C"/><stop offset=".52" stop-color="#34434C"/><stop offset="1" stop-color="#53636D"/></linearGradient>
+ <radialGradient id="rise" cx="52%" cy="46%" r="60%"><stop stop-color="#B9CED4" stop-opacity=".3"/><stop offset=".35" stop-color="#67818D" stop-opacity=".19"/><stop offset="1" stop-color="#26333C" stop-opacity="0"/></radialGradient>
+ <linearGradient id="globe" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#AFC4CB" stop-opacity=".8"/><stop offset=".035" stop-color="#879FA8" stop-opacity=".75"/><stop offset=".14" stop-color="#53636D" stop-opacity=".65"/><stop offset=".6" stop-color="#26333C"/><stop offset="1" stop-color="#26333C"/></linearGradient>
+ <linearGradient id="orbit" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#F7F8F6" stop-opacity="0"/><stop offset=".45" stop-color="#B9CED4" stop-opacity=".54"/><stop offset="1" stop-color="#93ADB5" stop-opacity=".07"/></linearGradient>
+ <clipPath id="horizon"><ellipse cx="1040" cy="1080" rx="1300" ry="565"/></clipPath>
+</defs>
+<rect width="1800" height="930" fill="url(#night)"/>
+<ellipse cx="1150" cy="510" rx="780" ry="510" fill="url(#rise)"/>
+<g fill="#F7F8F6" opacity=".48">
+<circle cx="286" cy="128" r=".75"/><circle cx="395" cy="220" r=".5"/><circle cx="662" cy="70" r=".7"/><circle cx="806" cy="172" r=".85"/><circle cx="1188" cy="92" r=".55"/><circle cx="1361" cy="254" r=".85"/><circle cx="1581" cy="90" r=".8"/><circle cx="1661" cy="370" r=".7"/><circle cx="1119" cy="305" r=".65"/><circle cx="933" cy="67" r=".45"/><circle cx="1745" cy="217" r=".65"/><circle cx="1472" cy="137" r=".5"/>
+</g>
+<ellipse cx="1040" cy="1080" rx="1300" ry="565" fill="url(#globe)"/>
+<ellipse cx="1040" cy="1080" rx="1300" ry="565" fill="none" stroke="#AFC4CB" stroke-opacity=".52" stroke-width="3"/>
+<g clip-path="url(#horizon)" stroke="#AFC4CB" fill="none" stroke-width="1" opacity=".09">
+<path d="M-20 616C490 760 785 645 1840 730"/><path d="M-20 700C490 830 1010 717 1840 822"/><path d="M80 820C510 875 1060 782 1810 895"/><path d="M420 560C630 720 610 850 690 930"/><path d="M990 545C1080 720 1140 828 1255 930"/><path d="M1480 570C1440 742 1522 830 1600 920"/>
+</g>
+<g fill="none" stroke="url(#orbit)" stroke-width=".8">
+<path d="M690-250L1365 1050"/><path d="M920-350L1670 1080"/><path d="M1640-180L740 1010"/>
+</g>
+<g opacity=".38" fill="none" stroke="#B9CED4" stroke-width=".55"><circle cx="1413" cy="340" r="96"/><path d="M1413 244v192M1317 340h192"/></g>
+</svg>

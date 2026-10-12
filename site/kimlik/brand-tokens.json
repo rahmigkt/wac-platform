@@ -1,0 +1,60 @@
+{
+  "project": "World Aerospace Congress",
+  "identity_version": "4.0",
+  "last_updated": "2026-10-12",
+  "institution": "WAC",
+  "lockup": {
+    "permanent_brand": "WAC",
+    "stacked_year": [
+      "20",
+      "27"
+    ],
+    "slash_allowed": false,
+    "symbol_file": "assets/wac-symbol-master.svg",
+    "year_usage": "20 above 27 in identity lockup; 2027 in ordinary copy",
+    "construction_file": "assets/wac-construction.svg"
+  },
+  "color": {
+    "deep_navy": "#0E2A3D",
+    "graphite": "#29495D",
+    "slate_gray": "#58758A",
+    "silver": "#CCD5DD",
+    "paper": "#F4F6F7",
+    "white": "#FFFFFF",
+    "ink": "#1D303B"
+  },
+  "typography": {
+    "family": "system-ui, -apple-system, Segoe UI, Arial, sans-serif",
+    "delivery": "system stack; no remote font",
+    "heading_weight": 700,
+    "body_weight": 400,
+    "label_weight": 700,
+    "units": "responsive rem/clamp"
+  },
+  "layout": {
+    "maximum_width_px": 1480,
+    "margin": "clamp(22px,4.3vw,74px)",
+    "base_spacing_px": 8,
+    "mobile_breakpoint_px": 720,
+    "tablet_breakpoint_px": 1050
+  },
+  "language": [
+    "tr",
+    "en"
+  ],
+  "usage": [
+    "Use the folded WAC vector geometry with uniform proportional scaling.",
+    "Keep the paper-fold planes subtle and preserve 76-unit stroke and aligned 153:300 diagonal geometry.",
+    "Stack 20 and 27 in the digital lockup; write 2027 in body copy.",
+    "Do not include the TBTK emblem inside WAC wordmark.",
+    "Scientific symposium names are official and must remain unchanged."
+  ],
+  "rights_note": "Brand assets are provided for consistent WAC identity applications.",
+  "congress_year": "2027",
+  "geometry": {
+    "ribbon_width_units": 76,
+    "diagonal_horizontal_shift_units": 153,
+    "diagonal_height_units": 300,
+    "fold_system": "shared WAC planes, proportional scaling only"
+  }
+}
