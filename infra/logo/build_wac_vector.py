@@ -17,13 +17,16 @@ def zero(x, y):
 def seven(x, y):
     return (f'M{vx(x):.1f},{vy(y):.1f}H{vx(x+230):.1f}L{vx(x+176):.1f},{vy(y+371):.1f}'
             f'H{vx(x+69):.1f}L{vx(x+112):.1f},{vy(y+82):.1f}H{vx(x):.1f}Z')
-digits = two(3166,677) + zero(3470,677) + two(3166,1112) + seven(3470,1112)
+sys.path.insert(0, str(Path(__file__).parent))
+from digits import digit_paths
+_dp, _ = digit_paths()
+digits_g = f'<g transform="matrix({S:.6f},0,0,{S:.6f},{X0-138*S:.3f},{Y0-675*S:.3f})">' + ''.join(f'<path d="{p}"/>' for p in _dp) + '</g>'
 DX1 = vx(3700)
 out = Path(sys.argv[2]); out.mkdir(parents=True, exist_ok=True)
 for theme, fill in (('light', '#FFFFFF'), ('dark', '#0E2A3D')):
     mark = ''.join(f'<path d="{d}"/>' for d in paths)
     for name, x1, extra, label in (('wac-mark', X1, '', 'WAC'),
-                                   ('wac-lockup', DX1, f'<path fill-rule="evenodd" d="{digits}"/>', 'WAC 2027')):
+                                   ('wac-lockup', DX1, digits_g, 'WAC 2027')):
         svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{X0:.2f} {Y0:.2f} {x1-X0:.2f} {Y1-Y0:.2f}" '
                f'role="img" aria-label="{label}"><g fill="{fill}">{mark}{extra}</g></svg>')
         (out / f'{name}-{theme}.svg').write_text(svg)
