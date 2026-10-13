@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446.41 100" role="img" aria-label="WAC 2027 — World Aerospace Congress"><defs>
+<linearGradient id="llighta" gradientUnits="userSpaceOnUse" x1="77.73502691896257" y1="40" x2="62.735026918962575" y2="90"><stop offset="0" stop-color="#C9D1DC"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+<linearGradient id="llightb" gradientUnits="userSpaceOnUse" x1="92.73502691896257" y1="40" x2="107.73502691896257" y2="60"><stop offset="0" stop-color="#C9D1DC"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+<linearGradient id="llightc" gradientUnits="userSpaceOnUse" x1="148.47005383792515" y1="85" x2="198.47005383792515" y2="85"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C9D1DC"/></linearGradient>
+<linearGradient id="llightd" gradientUnits="userSpaceOnUse" x1="248.40936406713092" y1="0" x2="326.4093640671309" y2="0"><stop offset="0" stop-color="#C9D1DC"/><stop offset=".45" stop-color="#FFFFFF"/></linearGradient>
+<linearGradient id="llighte" gradientUnits="userSpaceOnUse" x1="268.4093640671309" y1="0" x2="326.4093640671309" y2="0"><stop offset="0" stop-color="#C9D1DC"/><stop offset=".5" stop-color="#FFFFFF"/></linearGradient>
+<linearGradient id="llightf" gradientUnits="userSpaceOnUse" x1="178.47005383792515" y1="20" x2="133.47005383792515" y2="100"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".75" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C9D1DC"/></linearGradient>
+</defs>
+<path d="M57.74,51.50 L28.00,0.00 L0.00,0.00 L57.74,100.00 L85.24,52.37 L71.24,28.12Z" fill="url(#llighta)"/>
+<path d="M55.00,0.00 L83.00,0.00 L112.74,51.50 L142.47,0.00 L170.47,0.00 L112.74,100.00Z" fill="#FFFFFF"/>
+<path d="M71.24,28.12 L85.24,52.37 L99.24,28.12 L85.24,3.87Z" fill="url(#llightb)" opacity=".9"/>
+<path d="M178.47,0.00 L236.21,100.00 L208.21,100.00 L178.47,48.50 L148.74,100.00 L120.74,100.00Z" fill="url(#llightf)"/>
+<path d="M166.06,78.00 L157.97,92.00 L198.97,92.00 L190.88,78.00Z" fill="url(#llightc)"/>
+<path d="M313.71,22.00 L326.41,0.00 L258.35,0.00 L245.65,22.00Z" fill="url(#llightd)"/>
+<path d="M231.50,78.00 L244.21,100.00 L231.50,78.00Z M313.71,100.00 L326.41,78.00 L259.50,78.00 L272.21,100.00Z" fill="url(#llighte)"/>
+<path d="M258.35,0.00 L230.35,0.00 L208.41,38.00 L244.21,100.00 L272.21,100.00 L236.41,38.00Z" fill="#FFFFFF"/><rect x="340.4093640671309" y="0" width="1.2" height="100.0" fill="#FFFFFF"/><text x="354.4093640671309" y="18" font-family="Montserrat, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="4.48" fill="#FFFFFF">WAC</text><text x="354.4093640671309" y="38" font-family="Montserrat, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="4.48" fill="#FFFFFF">2027</text><text x="354.4093640671309" y="62" font-family="Montserrat, Arial, sans-serif" font-size="9.2" font-weight="500" letter-spacing="2.94" fill="#FFFFFF">WORLD</text><text x="354.4093640671309" y="78" font-family="Montserrat, Arial, sans-serif" font-size="9.2" font-weight="500" letter-spacing="2.94" fill="#FFFFFF">AEROSPACE</text><text x="354.4093640671309" y="94" font-family="Montserrat, Arial, sans-serif" font-size="9.2" font-weight="500" letter-spacing="2.94" fill="#FFFFFF">CONGRESS</text></svg>
