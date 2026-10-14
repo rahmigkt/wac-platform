@@ -60,13 +60,17 @@ html.intro-on{overflow:hidden}
 @media(max-width:700px){.wac-intro video{max-width:94vw}}
 /* === Tarihî vurgu renkleri: Turkey Red (kökboya) + Turkish Blue (İznik) === */
 :root{--tr-red:#A8261F;--tr-red-hi:#E2655B;--iz-blue:#17788F;--iz-blue-hi:#6CC3D6}
-.kicker,.app-eyebrow,.app-overline,.chapter-label,.small-overline,.app-picker-label,.cover-kicker{color:var(--tr-red)!important}
-.kicker.light,.hero-brief-kicker,.hero .kicker,.hero p:first-child,.app-final .app-overline{color:var(--tr-red-hi)!important}
-.axis-num,.app-index,.app-choice-n,.detail-num,.index-top{color:var(--iz-blue)!important}
-.hero-brief-item::before,.hero-brief-list li::before{color:var(--iz-blue-hi)!important}
 .app-live,.submit-btn{background:var(--tr-red)!important;border-color:var(--tr-red)!important;color:#fff!important}
 .app-live:hover,.submit-btn:hover{background:#8E1F19!important}
 .text-link,.index-link{text-decoration-color:var(--tr-red)!important;border-bottom-color:var(--tr-red)!important}
 .text-link:hover,.index-link:hover,.app-read:hover{color:var(--iz-blue)!important}
 .app-status-dot{background:var(--iz-blue)!important}
-.main-nav a[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--tr-red-hi)}
+
+/* geniş kırmızı alanlar: açılış (lacivert→kırmızı) ve fuar bölümü */
+.hero,.hero .hero-art{background:#A8261F!important;background-image:none!important}
+.hero-brief{background:rgba(40,0,0,.18)!important;border-color:rgba(255,255,255,.3)!important}
+.hero .kicker,.hero p,.hero-brief-kicker,.hero-brief *{color:#FBEDEA!important}.hero h1{color:#fff!important}
+.fair.section,.fair.section>*{background:#A8261F!important;background-image:none!important}
+.fair.section *{border-color:rgba(255,255,255,.3)!important}
+.fair.section .kicker,.fair.section p,.fair.section small,.fair.section span{color:#F7E6E1!important}
+.fair.section svg *{stroke:rgba(255,255,255,.55)!important}
