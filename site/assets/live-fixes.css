@@ -66,11 +66,36 @@ html.intro-on{overflow:hidden}
 .text-link:hover,.index-link:hover,.app-read:hover{color:var(--iz-blue)!important}
 .app-status-dot{background:var(--iz-blue)!important}
 
-/* geniş kırmızı alanlar: açılış (lacivert→kırmızı) ve fuar bölümü */
-.hero,.hero .hero-art{background:#A8261F!important;background-image:none!important}
-.hero-brief{background:rgba(40,0,0,.18)!important;border-color:rgba(255,255,255,.3)!important}
-.hero .kicker,.hero p,.hero-brief-kicker,.hero-brief *{color:#FBEDEA!important}.hero h1{color:#fff!important}
-.fair.section,.fair.section>*{background:#A8261F!important;background-image:none!important}
+/* === Bölüm renkleri (tarihî boyalar) ===
+   Kongre: Indigo/lacivert · Bilimsel: Turkish Blue · Forum: Cochineal Crimson · Fuar: Turkey Red · Platform: Verdigris */
+:root{--c-kongre:#0E2A3D;--c-bilim:#17788F;--c-forum:#7A1230;--c-fuar:#A8261F;--c-platform:#357F6E}
+/* açılış: düz lacivert, "Bir bakışta" kutusu turkuaz */
+.hero-brief{background:var(--c-bilim)!important;border-color:var(--c-bilim)!important}
+.hero-brief *{color:#fff!important;border-color:rgba(255,255,255,.3)!important}
+.hero-brief-item::before{color:#D5EEF3!important}
+/* ana sayfa: fuar bölümü tam kırmızı, diğerleri renk şeridi */
+.fair.section,.fair.section>*{background:var(--c-fuar)!important;background-image:none!important}
 .fair.section *{border-color:rgba(255,255,255,.3)!important}
 .fair.section .kicker,.fair.section p,.fair.section small,.fair.section span{color:#F7E6E1!important}
 .fair.section svg *{stroke:rgba(255,255,255,.55)!important}
+.science.section{box-shadow:inset 0 8px 0 var(--c-bilim)}
+.forum.section{box-shadow:inset 0 8px 0 var(--c-forum)}
+.deleg.section{box-shadow:inset 0 8px 0 var(--c-platform)}
+.intro.section{box-shadow:inset 0 8px 0 var(--c-kongre)}
+/* ana sayfa 01–05 kartları */
+.index-grid a[href*="kongre/"]{box-shadow:inset 0 4px 0 var(--c-kongre)}
+.index-grid a[href*="bilimsel/"]{box-shadow:inset 0 4px 0 var(--c-bilim)}
+.index-grid a[href*="forum/"]{box-shadow:inset 0 4px 0 var(--c-forum)}
+.index-grid a[href*="fuar/"]{box-shadow:inset 0 4px 0 var(--c-fuar)}
+.index-grid a[href*="platform/"]{box-shadow:inset 0 4px 0 var(--c-platform)}
+/* bölüm sayfalarının kapakları */
+.cover-bilimsel{background:var(--c-bilim)!important;background-image:none!important}
+.cover-forum{background:var(--c-forum)!important;background-image:none!important}
+.cover-fuar{background:var(--c-fuar)!important;background-image:none!important}
+.cover-platform{background:var(--c-platform)!important;background-image:none!important}
+.cover-bilimsel *,.cover-forum *,.cover-fuar *,.cover-platform *{border-color:rgba(255,255,255,.32)!important}
+.cover-bilimsel p,.cover-forum p,.cover-fuar p,.cover-platform p,.cover-bilimsel .cover-kicker,.cover-forum .cover-kicker,.cover-fuar .cover-kicker,.cover-platform .cover-kicker{color:rgba(255,255,255,.88)!important}
+:is(.cover-bilimsel,.cover-forum,.cover-fuar,.cover-platform) .cover-copy :is(h1,h2,p,span,a,small,div){color:#fff!important}
+:is(.cover-bilimsel,.cover-forum,.cover-fuar,.cover-platform) .cover-links a{background:transparent!important;border:1px solid rgba(255,255,255,.7)!important;color:#fff!important}
+:is(.cover-bilimsel,.cover-forum,.cover-fuar,.cover-platform) .cover-links a:first-child{background:#fff!important;color:#0E2A3D!important}
+:is(.cover-bilimsel,.cover-forum,.cover-fuar,.cover-platform) .cover-links a:first-child *{color:#0E2A3D!important}
