@@ -57,3 +57,4 @@
 .wac-intro-skip:hover{border-color:#fff}
 html.intro-on{overflow:hidden}
 .wac-intro[hidden]{display:none!important}
+@media(max-width:700px){.wac-intro video{width:94vw!important}}
